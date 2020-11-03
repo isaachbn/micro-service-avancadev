@@ -39,9 +39,9 @@ func init() {
 	retryClient := retryablehttp.NewClient()
 	retryClient.RetryMax = 5
 	res, err := retryClient.Get("http://localhost:9093")
-	defer res.Body.Close()
 
 	if err == nil {
+		defer res.Body.Close()
 		data, _ := ioutil.ReadAll(res.Body)
 		json.Unmarshal(data, &codes)
 
